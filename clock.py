@@ -21,4 +21,3 @@ def hit_api():
        
 
 sched.start()
-
