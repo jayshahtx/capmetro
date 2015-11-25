@@ -23,13 +23,10 @@ def parse_data(data):
 
 def main():
 
-
-    import time
-    while True:
-        d = get_raw_bus_locs()
-        loc = parse_data(d)
-        pdb.set_trace()
-        time.sleep(1)
+    d = get_raw_bus_locs()
+    loc = parse_data(d)
+    pdb.set_trace()
+       
 
 if __name__ == "__main__":
     main()
