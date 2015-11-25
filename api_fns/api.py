@@ -1,5 +1,6 @@
-import urllib, json
+import urllib, json, datetime
 
+from db_fns.db import get_mongo_collection
 
 def get_bus_data():
     """Hits cap metro API and returns bus data in JSON form"""
@@ -16,4 +17,13 @@ def get_bus_data():
         ['Vehicles']\
         ['Vehicle']
 
-    return vehicles
+    # update the MongoDB collection
+    now = datetime.datetime.now()
+    collection = get_mongo_collection()
+    return collection.insert_one(
+        {
+            str(now.strftime("%Y-%m-%d %H:%M:%S")):vehicles
+        }
+    )
+
+    

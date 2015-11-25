@@ -1,3 +1,8 @@
+""" 
+    Standard worker setup, taken from Heroku tutorial
+    Worker listens for new jobs in the Redis queue
+"""
+
 import os
 
 import redis
