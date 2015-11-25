@@ -1,4 +1,7 @@
 # venv
 venv/
 
+# misc json files
+*.json
 
+*.pyc
