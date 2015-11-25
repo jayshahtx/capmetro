@@ -17,7 +17,8 @@ def get_bus_data():
         ['Vehicles']\
         ['Vehicle']
 
-    # update the MongoDB collection
+    # update the MongoDB collection, key is timestamp and value is 
+    # vehicle locations
     now = datetime.datetime.now()
     collection = get_mongo_collection()
     return collection.insert_one(

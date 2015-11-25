@@ -16,8 +16,8 @@ logging.basicConfig()
 # schedule a job to run every 5 seconds
 @sched.scheduled_job('interval',seconds=5)
 def hit_api():
-    result = q.enqueue(get_bus_data)
-    print result
+    job = q.enqueue(get_bus_data)
+    print "Posted job at " + str(datetime.datetime.now())
     sys.stdout.flush()
        
 sched.start()
