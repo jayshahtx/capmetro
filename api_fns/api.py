@@ -1,5 +1,4 @@
 import urllib, json, datetime
-
 from db_fns.db import get_mongo_collection
 
 def get_bus_data():
