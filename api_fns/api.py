@@ -1,4 +1,5 @@
 import urllib, json, datetime
+import pymongo
 from db_fns.db import get_mongo_collection
 
 def get_bus_data():
@@ -16,20 +17,21 @@ def get_bus_data():
         ['Vehicles']\
         ['Vehicle']
 
-    key_data = json.loads(str(vehicles[0]))
-    key = key_data["Vehicleid"] + key_data["Position"]
 
-    print key
+    # use the first vehicle's id and its position as the key
+    key = str(vehicles[0]["Vehicleid"]) + "--" + str(vehicles[0]["Position"]).replace(".","")
 
-    # update the MongoDB collection, key is timestamp and value is 
+    # update the MongoDB collection, key is defined above and value is all
     # vehicle locations
-    now = datetime.datetime.now()
     collection = get_mongo_collection()
 
-    return collection.insert_one(
-        {
-            str(now.strftime("%Y-%m-%d %H:%M:%S")):vehicles
-        }
-    )
-
+    try:
+        return collection.insert_one(
+            {
+                "_id":key,
+                "value":vehicles
+            }
+        )
+    except pymongo.errors.DuplicateKeyError, e:
+        print "Data already exists in database"
     

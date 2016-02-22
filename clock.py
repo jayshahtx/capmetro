@@ -13,8 +13,8 @@ sched = BlockingScheduler()
 q = Queue(connection=conn)
 logging.basicConfig()
 
-# schedule a job to run every 5 seconds
-@sched.scheduled_job('interval',seconds=30)
+# schedule a job to run every 120 seconds
+@sched.scheduled_job('interval',seconds=120)
 def hit_api():
     job = q.enqueue(get_bus_data)
     print "Posted job at " + str(datetime.datetime.now())
