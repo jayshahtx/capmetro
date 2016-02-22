@@ -20,6 +20,10 @@ def get_bus_data():
     # vehicle locations
     now = datetime.datetime.now()
     collection = get_mongo_collection()
+
+    latest = collection.find().limit(1).sort({$natural:-1})
+    print latest
+    
     return collection.insert_one(
         {
             str(now.strftime("%Y-%m-%d %H:%M:%S")):vehicles
