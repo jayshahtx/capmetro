@@ -4,4 +4,11 @@ venv/
 # misc json files
 *.json
 
+# mac file
+*.DS_Store
+*.rdb
+#mongo folder
+mongodb-osx-x86_64-3.0.7/
+
+# compiled python
 *.pyc

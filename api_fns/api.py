@@ -16,14 +16,16 @@ def get_bus_data():
         ['Vehicles']\
         ['Vehicle']
 
+    key_data = json.loads(str(vehicles[0]))
+    key = key_data["Vehicleid"] + key_data["Position"]
+
+    print key
+
     # update the MongoDB collection, key is timestamp and value is 
     # vehicle locations
     now = datetime.datetime.now()
     collection = get_mongo_collection()
 
-    latest = collection.find().limit(1).sort({$natural:-1})
-    print latest
-    
     return collection.insert_one(
         {
             str(now.strftime("%Y-%m-%d %H:%M:%S")):vehicles
