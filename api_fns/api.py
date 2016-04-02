@@ -174,5 +174,6 @@ def get_bus_data():
                     "value":dic
                 }
             )
-        except e:
+        except:
             print "Some error occured"
+
